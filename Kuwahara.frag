@@ -2,7 +2,7 @@ precision mediump float;
 
 uniform float u_time;
 uniform vec2 u_resolution;
-uniform sampler2D u_tex0; // data/IMG_7305.jpg
+uniform sampler2D u_tex0; // data/Buddy.jpeg
 uniform vec2 u_tex0Resolution;
 
 
@@ -29,43 +29,50 @@ void main()
     // Current
     vec3 c;
     
-    
     // Quadrant 0
-    for (int j = radius; j >= 0; --j)  {
-         for (int i = radius; i >= 0; --i)  {
-             c = texture2D(u_tex0, uv + vec2(i,j) * srcSize).rgb;
-             a0 += c;
-             s0 += c * c;
+    for (int j = 0; j <= 10; j++)  {
+         for (int i = 0; i <= 10; i++)  {
+            if(i < radius && j < radius){
+                c = texture2D(u_tex0, uv + (vec2(i ,j) * srcSize)).rgb;
+                a0 += c;
+                s0 += c * c;
+            }
          }
     }
-     
-     // Quadrant 1
-    for (int j = radius; j >= 0; --j)  {
-         for (int i = -radius; i <= 0; ++i)  {
-             c = texture2D(u_tex0, uv + vec2(i,j) * srcSize).rgb;
-             a1 += c;
-             s1 += c * c;
+    
+    // Quadrant 1
+    for (int j = 0; j <= 10; j++)  {
+         for (int i = 0; i <= 10; i++)  {
+            if(i < radius && j < radius){
+                c = texture2D(u_tex0, uv + (vec2(i ,-1 * j) * srcSize)).rgb;
+                a1 += c;
+                s1 += c * c;
+            }
          }
     }
-     
-     // Quadrant 2
-    for (int j = -radius; j <= 0; ++j)  {
-         for (int i = -radius; i <= 0; ++i)  {
-             c = texture2D(u_tex0, uv + vec2(i,j) * srcSize).rgb;
-             a2 += c;
-             s2 += c * c;
+    
+    // Quadrant 2
+    for (int j = 0; j <= 10; j++)  {
+         for (int i = 0; i <= 10; i++)  {
+            if(i < radius && j < radius){
+                c = texture2D(u_tex0, uv + (vec2(-1 * i ,j) * srcSize)).rgb;
+                a2 += c;
+                s2 += c * c;
+            }
          }
     }
-     
-     // Quadrant 3
-    for (int j = -radius; j <= 0; ++j)  {
-         for (int i = radius; i >= 0; --i)  {
-             c = texture2D(u_tex0, uv + vec2(i,j) * srcSize).rgb;
-             a3 += c;
-             s3 += c * c;
+    
+    // Quadrant 3
+    for (int j = 0; j <= 10; j++)  {
+         for (int i = 0; i <= 10; i++)  {
+            if(i < radius && j < radius){
+                c = texture2D(u_tex0, uv + (vec2(-1 * i , -1 * j) * srcSize)).rgb;
+                a3 += c;
+                s3 += c * c;
+            }
          }
     }
-     
+    
     
     // Quadrant 0 stdev
     a0 /= n;
