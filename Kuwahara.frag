@@ -32,48 +32,23 @@ void main()
     // Quadrant 0
     for (int j = 0; j <= 10; j++)  {
          for (int i = 0; i <= 10; i++)  {
-            if(i < radius && j < radius){
+            if(i <= radius && j <= radius){
                 c = texture2D(u_tex0, uv + (vec2(i ,j) * srcSize)).rgb;
                 a0 += c;
                 s0 += c * c;
-            }
-         }
-    }
-    
-    // Quadrant 1
-    for (int j = 0; j <= 10; j++)  {
-         for (int i = 0; i <= 10; i++)  {
-            if(i < radius && j < radius){
                 c = texture2D(u_tex0, uv + (vec2(i ,-1 * j) * srcSize)).rgb;
                 a1 += c;
                 s1 += c * c;
-            }
-         }
-    }
-    
-    // Quadrant 2
-    for (int j = 0; j <= 10; j++)  {
-         for (int i = 0; i <= 10; i++)  {
-            if(i < radius && j < radius){
                 c = texture2D(u_tex0, uv + (vec2(-1 * i ,j) * srcSize)).rgb;
                 a2 += c;
                 s2 += c * c;
-            }
-         }
-    }
-    
-    // Quadrant 3
-    for (int j = 0; j <= 10; j++)  {
-         for (int i = 0; i <= 10; i++)  {
-            if(i < radius && j < radius){
                 c = texture2D(u_tex0, uv + (vec2(-1 * i , -1 * j) * srcSize)).rgb;
                 a3 += c;
                 s3 += c * c;
             }
          }
     }
-    
-    
+
     // Quadrant 0 stdev
     a0 /= n;
     s0 = abs(s0 / n - a0 * a0);
