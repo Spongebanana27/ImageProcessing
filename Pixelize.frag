@@ -2,7 +2,7 @@ precision mediump float;
 
 uniform float u_time;
 uniform vec2 u_resolution;
-uniform sampler2D u_tex0; // data/IMG_5515.jpg
+uniform sampler2D u_tex0; // data/Buddy.jpeg
 uniform vec2 u_tex0Resolution;
 
 void main()
@@ -20,7 +20,7 @@ void main()
     
     // Location inside of pixel
     vec2 temp = pixelCoord - floor(pixelCoord);
-    vec2 loc = floor(temp.xy * pixelSize);
+    vec2 loc = (temp.xy * pixelSize + .5);
     
     vec3 avg = vec3(0.0);
     int count = 0;
