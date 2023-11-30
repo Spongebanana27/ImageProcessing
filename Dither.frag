@@ -2,7 +2,7 @@ precision mediump float;
 
 uniform float u_time;
 uniform vec2 u_resolution;
-uniform sampler2D u_tex0; // data/IMG_5515.jpg
+uniform sampler2D u_tex0; // data/Buddy.jpeg
 uniform vec2 u_tex0Resolution;
 
 const mat4 thresholdMap = (mat4(0., .5, .125, .625, 

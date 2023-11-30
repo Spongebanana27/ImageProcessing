@@ -8,7 +8,7 @@ uniform vec2 u_tex0Resolution;
 void main()
 {
 
-    float pixelSize = 10.0;
+    float pixelSize = 6.0;
 
     vec3 col = texture2D(u_tex0, gl_FragCoord.xy/u_resolution).rgb;
     vec2 uv = gl_FragCoord.xy/u_resolution.xy;
@@ -20,7 +20,7 @@ void main()
     
     // Location inside of pixel
     vec2 temp = pixelCoord - floor(pixelCoord);
-    vec2 loc = (temp.xy * pixelSize + .5);
+    vec2 loc = floor(temp.xy * pixelSize + .5);
     
     vec3 avg = vec3(0.0);
     int count = 0;
@@ -29,9 +29,9 @@ void main()
     bool second = true;
 
 
-    for(float j = 0.0; j < 10.0; j++){
-        for(float i = 0.0; i < 10.0; i++){
-            if(j < pixelSize - loc.x - 1.0 && i < pixelSize - loc.y - 1.0){
+    for(float j = 0.0; j < 50.0; j++){
+        for(float i = 0.0; i < 50.0; i++){
+            if(j < pixelSize -1.0 && i < pixelSize - 1.0){
                 avg += texture2D(u_tex0, uv + (vec2(j - loc.x, i - loc.y) * srcSize)).rgb;
                 count++;
             }
