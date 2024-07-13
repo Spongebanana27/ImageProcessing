@@ -19,6 +19,8 @@ void main()
     float n = float((radius + 1) * (radius + 1));
     int i; 
 	int j;
+
+    int t=0;
     
     // Quadrant ave
     vec3 a0 = vec3(0.0); vec3 a1 = vec3(0.0); vec3 a2 = vec3(0.0); vec3 a3 = vec3(0.0);
@@ -45,19 +47,20 @@ void main()
                 c = texture2D(u_tex0, uv + (vec2(-1 * i , -1 * j) * srcSize)).rgb;
                 a3 += c;
                 s3 += c * c;
+                t++;
             }
          }
     }
 
     // Quadrant 0 stdev
-    a0 /= n;
+    a0 /= float(t);
     s0 = abs(s0 / n - a0 * a0);
     float sSum = s0.r + s0.g + s0.b;
     float lowestSig = sSum;
     col = a0;
     
     // Quadrant 1 stdev
-    a1 /= n;
+    a1 /= float(t);
     s1 = abs(s1 / n - a1 * a1);
     sSum = s1.r + s1.g + s1.b;
     if(sSum < lowestSig){
@@ -66,7 +69,7 @@ void main()
     }
     
     // Quadrant 2 stdev
-    a2 /= n;
+    a2 /= float(t);
     s2 = abs(s2 / n - a2 * a2);
     sSum = s2.r + s2.g + s2.b;
     if(sSum < lowestSig){
@@ -75,7 +78,7 @@ void main()
     }
     
     // Quadrant 3 stdev
-    a3 /= n;
+    a3 /= float(t);
     s3 = abs(s3 / n - a3 * a3);
     sSum = s3.r + s3.g + s3.b;
     if(sSum < lowestSig){

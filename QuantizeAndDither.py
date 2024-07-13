@@ -5,7 +5,7 @@ from PIL import Image
 n = 4
 ##filePath = "C:\Photos\\Sus.JPG"
 
-filePath = "data\Buddy.jpeg"
+filePath = "C:\Prep\OldProjects\ImgProc\ImageProcessing\data\Buddy.jpeg"
 
 im = Image.open(filePath, 'r') 
 
@@ -72,5 +72,5 @@ for i in range(w):
         new.putpixel((i, j), (int(imgBucket[c][0]), int(imgBucket[c][1]), int(imgBucket[c][2])))
         c += 1
 
-new.save(filePath + "_Quantized_" + str(pow(2, n)) + ".jpeg") 
+new.save(filePath + "_QuantizedDithered_" + str(pow(2, n)) + ".jpeg") 
         
